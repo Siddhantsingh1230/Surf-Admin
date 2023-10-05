@@ -26,7 +26,7 @@ const App = () => {
           <Route exact path="/forgotpassword" element={<ForgotPwd />} />
           <Route exact path="*" element={<PageNotFound />} />
         </Routes>
-        <ToastContainer style={{ fontSize:"0.75rem" }}/>
+        <ToastContainer style={{ fontSize:"0.85rem" }}/>
       </Router>
     </>
   );

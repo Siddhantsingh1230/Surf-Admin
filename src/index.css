@@ -37,4 +37,17 @@
     transform: rotate(450deg);
   }
 }
+/* Scrollbar */
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: white;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: #1f2937;
+  border: 1px solid rgb(46, 46, 46);
+}
+
 @tailwind utilities;

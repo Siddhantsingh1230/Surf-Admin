@@ -25,7 +25,7 @@ export const authSlice = createSlice({
       .addCase(loginAsync.fulfilled, (state, action) => {
         state.status = "idle";
         state.admin = action.payload;
-        toast.success(`🦄Welcome back, ${action.payload.username}`, {
+        toast.success(`🦄 Welcome, ${action.payload.username}`, {
           position: "top-right",
           autoClose: 3000,
           hideProgressBar: false,
