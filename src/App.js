@@ -1,11 +1,23 @@
-import React from 'react';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import ForgotPwd from "./pages/ForgotPwd";
+import PageNotFound from "./pages/PageNotFound";
 
-function App() {
+const App = () => {
   return (
     <>
-    <div className='bg-blue-500 text-white'>Hello</div>
+      <Router>
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route exact path="/login" element={<Login />} />
+          <Route exact path="/forgotpassword" element={<ForgotPwd />} />
+          <Route exact path="8" element={<PageNotFound />} />
+        </Routes>
+      </Router>
     </>
   );
-}
+};
 
 export default App;
