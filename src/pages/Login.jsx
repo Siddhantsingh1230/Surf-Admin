@@ -1,20 +1,26 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { loginAsync } from "../slices/AuthSlice";
 
 const Login = () => {
   const {
     register,
     handleSubmit,
-    watch,
+    reset,
     formState: { errors },
   } = useForm();
+  const dispatch = useDispatch();
+  const admin = useSelector((state) => state.auth.admin);
   return (
     <>
+    {admin && <Navigate to="/" replace={true} />}
       <form
         noValidate
         onSubmit={handleSubmit((data) => {
-          console.log(data);
+            dispatch(loginAsync(data));
+            reset();
         })}
         className="flex justify-center items-center h-full w-full"
       >
