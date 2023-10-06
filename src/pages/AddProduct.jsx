@@ -54,7 +54,7 @@ const AddProduct = () => {
           onClick={() => reset()}
           className="mr-2 hidden rounded-lg border-2 px-4 py-2 font-medium text-gray-500 sm:inline focus:outline-none focus:ring hover:bg-gray-200"
         >
-          Cancel
+          Clear
         </button>
         <button
           type="submit"
@@ -325,7 +325,7 @@ const AddProduct = () => {
       </div>
 
       <div className="flex justify-end py-4 sm:hidden">
-        <button className="mr-2 rounded-lg border-2 px-4 py-2 font-medium text-gray-500 focus:outline-none focus:ring hover:bg-gray-200">
+        <button className="mr-2 rounded-lg border-2 px-4 py-2 font-medium text-gray-500 focus:outline-none focus:ring hover:bg-gray-200" onClick={() => reset()}>
           Clear
         </button>
         <button className="rounded-lg border-2 border-transparent bg-blue-600 px-4 py-2 font-medium text-white focus:outline-none focus:ring hover:bg-blue-700">

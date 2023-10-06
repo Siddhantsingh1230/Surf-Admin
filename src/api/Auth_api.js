@@ -9,3 +9,7 @@ export const login = async (userInput) => {
   }
   return Promise.reject("Login Failed");
 };
+export const signout = async (userId) => {
+  //logic backend
+  return "SignedOut";
+};
