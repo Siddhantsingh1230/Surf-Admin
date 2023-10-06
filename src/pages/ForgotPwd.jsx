@@ -6,7 +6,6 @@ const ForgotPwd = () => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
   return (
