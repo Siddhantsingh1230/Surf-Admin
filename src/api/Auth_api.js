@@ -14,3 +14,9 @@ export const signout = async (userId) => {
   return "SignedOut";
 };
 
+export const getUserId =async (email) =>{
+  const {data} = await axios.get( 
+    `http://localhost:8080/users?email=${email}`
+  )
+  return data;
+}
