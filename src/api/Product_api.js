@@ -1,8 +1,9 @@
 import axios from "axios";
 
-export const getAllProducts = async () => {
-  const { data } = await axios.get(`http://localhost:8080/products`);
-  return data;
+export const getAllProducts = async (page) => {
+  const response = await axios.get(`http://localhost:8080/products?_page=${page}&_limit=10`);
+  const totalProduct = response.headers["x-total-count"];
+  return {data:response.data,currentPage:page,totalProduct};
 };
 export const updateProduct = async ( product ) => {
   const { data } = await axios.patch(

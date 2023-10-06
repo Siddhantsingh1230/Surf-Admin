@@ -10,7 +10,7 @@ import SkeletonCard from "./SkeletonCard";
 import DeleteProductModal from "./DeleteProductModal";
 import EditProductModal from "./EditProductModal";
 
-const ProductList = ({ search }) => {
+const ProductList = ({ search,setPage }) => {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
@@ -20,13 +20,14 @@ const ProductList = ({ search }) => {
   const [selectedProductId, setSelectedProductId] = useState();
   const products = useSelector((state) => state.productList.products);
   useEffect(() => {
-    dispatch(getAllProductsAsync());
+    dispatch(getAllProductsAsync(1));
   }, [dispatch]);
   useEffect(() => {
     if (search) {
       dispatch(searchProductAsync(search));
     } else {
-      dispatch(getAllProductsAsync());
+      dispatch(getAllProductsAsync(1));
+      setPage(1);      
     }
   }, [search]);
   const deleteProduct = (id) => {

@@ -12,19 +12,24 @@ const initialState = {
   products: [],
   currentProduct: null,
   status: "idle",
+  currentPage: 1,
+  totalProduct:0,
 };
 
 export const getAllProductsAsync = createAsyncThunk(
   "Products/getAll",
-  async () => {
-    const data = await getAllProducts();
+  async (page) => {
+    const data = await getAllProducts(page);
     return data;
   }
 );
-export const addProductAsync = createAsyncThunk("Products/add", async (product) => {
-  const data = await addProduct(product);
-  return data;
-});
+export const addProductAsync = createAsyncThunk(
+  "Products/add",
+  async (product) => {
+    const data = await addProduct(product);
+    return data;
+  }
+);
 export const getProductByIdAsync = createAsyncThunk(
   "Products/getById",
   async (productId) => {
@@ -66,7 +71,14 @@ export const productSlice = createSlice({
       })
       .addCase(getAllProductsAsync.fulfilled, (state, action) => {
         state.status = "idle";
-        state.products = action.payload;
+        state.currentPage = action.payload.currentPage;
+        state.totalProduct = action.payload.totalProduct;
+        if (action.payload.currentPage > 1) {
+          state.products.push(...action.payload.data);
+          
+        } else {
+          state.products = action.payload.data;
+        }
       })
       .addCase(searchProductAsync.pending, (state) => {
         state.status = "loading";
@@ -124,7 +136,7 @@ export const productSlice = createSlice({
       .addCase(addProductAsync.fulfilled, (state, action) => {
         state.status = "idle";
         state.products.push(action.payload);
-        console.log(action.payload)
+        console.log(action.payload);
       })
       .addCase(addProductAsync.rejected, (state, action) => {
         state.status = "idle";
