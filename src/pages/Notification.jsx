@@ -25,15 +25,20 @@ const Notification = () => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+    if (formData.notificationMessage.trim().length==0) {
+      alert("Textarea cannot be empty"); // You can display an alert or handle it as you prefer
+      return; // Return early to prevent further processing
+    }
     if (selectedOption === "radioDefault02") {
-      if (formData.notificationMessage.trim() === "") {
-        alert("Textarea cannot be empty"); // You can display an alert or handle it as you prefer
-        return; // Return early to prevent further processing
-      }
       try {
+        // console.log(formData.email);
+        if (formData.notificationMessage.trim().length==0 || formData.email.trim().length==0) {
+          alert("Email can't be empty"); // You can display an alert or handle it as you prefer
+          return; // Return early to prevent further processing
+        }
         const userId = await getUserId(formData.email);
         const notificationData = {
-          msg: formData.notificationMessage,
+          msg: formData.notificationMessage.trim(),
           date: String(
             `${String(date.getDate()).padStart(2, "0")}-${String(
               date.getMonth() + 1
@@ -54,8 +59,8 @@ const Notification = () => {
       }
     }
     if (selectedOption === "radioDefault01") {
-      try {
-        await notifyAll(formData.notificationMessage);
+      try {       
+        await notifyAll(formData.notificationMessage.trim());
         setFormData({
           notificationMessage: "",
           email: "",
@@ -77,7 +82,7 @@ const Notification = () => {
         <div className="flex w-96 flex-col space-y-5 rounded-lg sm:border py-5 px-5 my-16 sm:shadow-xl mx-auto">
           <div className="mx-auto mb-2 space-y-3">
             <h1 className="text-center text-3xl font-bold text-gray-700">
-              Notification Pannel
+              Notification Panel
             </h1>
             <p className="text-gray-500">Notify users </p>
           </div>
