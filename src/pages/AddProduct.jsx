@@ -5,9 +5,12 @@ import {
   getAllBrandsAsync,
   getAllCategoriesAsync,
 } from "../slices/CategoryBrandSlice";
+import { addProductAsync } from "../slices/ProductSlice";
+import {useNavigate} from "react-router-dom";
 
 const AddProduct = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -24,7 +27,21 @@ const AddProduct = () => {
     <form
       noValidate
       onSubmit={handleSubmit((data) => {
-        console.log(data);
+        const Product = {
+          title: data.title,
+          description: data.description,
+          price: +data.price,
+          discountPercentage: +data.discountPercentage,
+          rating: +data.rating,
+          stock: +data.stock,
+          brand: data.brand,
+          category: data.category,
+          thumbnail: data.thumbnail,
+          images: [data.img1, data.img2, data.img3, data.img4, data.img5],
+        };
+        dispatch(addProductAsync(Product));
+        navigate("/");
+        reset();
       })}
       className="my-4 max-w-screen-md border px-4 shadow-xl sm:mx-4 sm:rounded-xl sm:px-4 sm:py-4 md:mx-auto"
     >
@@ -60,11 +77,11 @@ const AddProduct = () => {
           className="w-full rounded-md border bg-white px-2 py-2 outline-none ring-blue-600 focus:ring-1"
         />
       </div>
-        {errors.title && (
-          <p className="inline-flex items-center rounded-md  px-2 py-0 text-xs font-medium text-red-700 ">
-            {errors.title.message}
-          </p>
-        )}
+      {errors.title && (
+        <p className="inline-flex items-center rounded-md  px-2 py-0 text-xs font-medium text-red-700 ">
+          {errors.title.message}
+        </p>
+      )}
       <div className="flex flex-col gap-4 py-4 sm:flex-row">
         <p className="shrink-0 w-32 font-medium">Description</p>
         <input
@@ -79,11 +96,11 @@ const AddProduct = () => {
           className="w-full rounded-md border bg-white px-2 py-2 outline-none ring-blue-600 focus:ring-1"
         />
       </div>
-        {errors.description && (
-          <p className="inline-flex items-center rounded-md  px-2 py-0 text-xs font-medium text-red-700 ">
-            {errors.description.message}
-          </p>
-        )}
+      {errors.description && (
+        <p className="inline-flex items-center rounded-md  px-2 py-0 text-xs font-medium text-red-700 ">
+          {errors.description.message}
+        </p>
+      )}
       <div className="flex flex-col gap-4 py-4 sm:flex-row">
         <p className="shrink-0 w-32 font-medium">Price</p>
         <input
@@ -93,11 +110,11 @@ const AddProduct = () => {
           className="w-full rounded-md border bg-white px-2 py-2 outline-none ring-blue-600 focus:ring-1"
         />
       </div>
-        {errors.price && (
-          <p className="inline-flex items-center rounded-md  px-2 py-0 text-xs font-medium text-red-700 ">
-            {errors.price.message}
-          </p>
-        )}
+      {errors.price && (
+        <p className="inline-flex items-center rounded-md  px-2 py-0 text-xs font-medium text-red-700 ">
+          {errors.price.message}
+        </p>
+      )}
       <div className="flex flex-col gap-4 py-4 sm:flex-row">
         <p className="shrink-0 w-32 font-medium">Discount</p>
         <input
@@ -109,11 +126,11 @@ const AddProduct = () => {
           className="w-full rounded-md border bg-white px-2 py-2 outline-none ring-blue-600 focus:ring-1"
         />
       </div>
-        {errors.discountPercentage && (
-          <p className="inline-flex items-center rounded-md  px-2 py-0 text-xs font-medium text-red-700 ">
-            {errors.discountPercentage.message}
-          </p>
-        )}
+      {errors.discountPercentage && (
+        <p className="inline-flex items-center rounded-md  px-2 py-0 text-xs font-medium text-red-700 ">
+          {errors.discountPercentage.message}
+        </p>
+      )}
       <div className="flex flex-col gap-4 py-4 sm:flex-row">
         <p className="shrink-0 w-32 font-medium">Stock</p>
         <input
@@ -123,11 +140,11 @@ const AddProduct = () => {
           className="w-full rounded-md border bg-white px-2 py-2 outline-none ring-blue-600 focus:ring-1"
         />
       </div>
-        {errors.stock && (
-          <p className="inline-flex items-center rounded-md  px-2 py-0 text-xs font-medium text-red-700 ">
-            {errors.stock.message}
-          </p>
-        )}
+      {errors.stock && (
+        <p className="inline-flex items-center rounded-md  px-2 py-0 text-xs font-medium text-red-700 ">
+          {errors.stock.message}
+        </p>
+      )}
       <div className="flex flex-col gap-4 py-4 sm:flex-row">
         <p className="shrink-0 w-32 font-medium">Rating</p>
         <input
@@ -137,11 +154,11 @@ const AddProduct = () => {
           className="w-full rounded-md border bg-white px-2 py-2 outline-none ring-blue-600 focus:ring-1"
         />
       </div>
-        {errors.rating && (
-          <p className="inline-flex items-center rounded-md  px-2 py-0 text-xs font-medium text-red-700 ">
-            {errors.rating.message}
-          </p>
-        )}
+      {errors.rating && (
+        <p className="inline-flex items-center rounded-md  px-2 py-0 text-xs font-medium text-red-700 ">
+          {errors.rating.message}
+        </p>
+      )}
       <div className="flex flex-col gap-4 py-4 sm:flex-row">
         <p className="shrink-0 w-32 font-medium">Thumbnail</p>
         <input
@@ -157,11 +174,11 @@ const AddProduct = () => {
           className="w-full rounded-md border bg-white px-2 py-2 outline-none ring-blue-600 focus:ring-1"
         />
       </div>
-        {errors.thumbnail && (
-          <p className="inline-flex items-center rounded-md  px-2 py-0 text-xs font-medium text-red-700 ">
-            {errors.thumbnail.message}
-          </p>
-        )}
+      {errors.thumbnail && (
+        <p className="inline-flex items-center rounded-md  px-2 py-0 text-xs font-medium text-red-700 ">
+          {errors.thumbnail.message}
+        </p>
+      )}
       <div className="flex flex-col gap-4 py-4 sm:flex-row">
         <p className="shrink-0 w-32 font-medium">Image 1</p>
         <input
@@ -177,11 +194,11 @@ const AddProduct = () => {
           className="w-full rounded-md border bg-white px-2 py-2 outline-none ring-blue-600 focus:ring-1"
         />
       </div>
-        {errors.img1 && (
-          <p className="inline-flex items-center rounded-md  px-2 py-0 text-xs font-medium text-red-700 ">
-            {errors.img1.message}
-          </p>
-        )}
+      {errors.img1 && (
+        <p className="inline-flex items-center rounded-md  px-2 py-0 text-xs font-medium text-red-700 ">
+          {errors.img1.message}
+        </p>
+      )}
       <div className="flex flex-col gap-4 py-4 sm:flex-row">
         <p className="shrink-0 w-32 font-medium">Image 2</p>
         <input
@@ -197,11 +214,11 @@ const AddProduct = () => {
           className="w-full rounded-md border bg-white px-2 py-2 outline-none ring-blue-600 focus:ring-1"
         />
       </div>
-        {errors.img2 && (
-          <p className="inline-flex items-center rounded-md  px-2 py-0 text-xs font-medium text-red-700 ">
-            {errors.img2.message}
-          </p>
-        )}
+      {errors.img2 && (
+        <p className="inline-flex items-center rounded-md  px-2 py-0 text-xs font-medium text-red-700 ">
+          {errors.img2.message}
+        </p>
+      )}
       <div className="flex flex-col gap-4 py-4 sm:flex-row">
         <p className="shrink-0 w-32 font-medium">Image 3</p>
         <input
@@ -217,11 +234,11 @@ const AddProduct = () => {
           className="w-full rounded-md border bg-white px-2 py-2 outline-none ring-blue-600 focus:ring-1"
         />
       </div>
-        {errors.img3 && (
-          <p className="inline-flex items-center rounded-md  px-2 py-0 text-xs font-medium text-red-700 ">
-            {errors.img3.message}
-          </p>
-        )}
+      {errors.img3 && (
+        <p className="inline-flex items-center rounded-md  px-2 py-0 text-xs font-medium text-red-700 ">
+          {errors.img3.message}
+        </p>
+      )}
       <div className="flex flex-col gap-4 py-4 sm:flex-row">
         <p className="shrink-0 w-32 font-medium">Image 4</p>
         <input
@@ -237,11 +254,11 @@ const AddProduct = () => {
           className="w-full rounded-md border bg-white px-2 py-2 outline-none ring-blue-600 focus:ring-1"
         />
       </div>
-        {errors.img4 && (
-          <p className="inline-flex items-center rounded-md  px-2 py-0 text-xs font-medium text-red-700 ">
-            {errors.img4.message}
-          </p>
-        )}
+      {errors.img4 && (
+        <p className="inline-flex items-center rounded-md  px-2 py-0 text-xs font-medium text-red-700 ">
+          {errors.img4.message}
+        </p>
+      )}
       <div className="flex flex-col gap-4 py-4 sm:flex-row">
         <p className="shrink-0 w-32 font-medium">Image 5</p>
         <input
@@ -257,11 +274,11 @@ const AddProduct = () => {
           className="w-full rounded-md border bg-white px-2 py-2 outline-none ring-blue-600 focus:ring-1"
         />
       </div>
-        {errors.img5 && (
-          <p className="inline-flex items-center rounded-md  px-2 py-0 text-xs font-medium text-red-700 ">
-            {errors.img5.message}
-          </p>
-        )}
+      {errors.img5 && (
+        <p className="inline-flex items-center rounded-md  px-2 py-0 text-xs font-medium text-red-700 ">
+          {errors.img5.message}
+        </p>
+      )}
       <div className="flex flex-col gap-4 py-4 sm:flex-row">
         <div>
           <p className="shrink-0 w-32 font-medium">Brand</p>

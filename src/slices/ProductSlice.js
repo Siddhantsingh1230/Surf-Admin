@@ -5,11 +5,12 @@ import {
   deleteProduct,
   updateProduct,
   getProductById,
+  addProduct,
 } from "../api/Product_api";
 
 const initialState = {
   products: [],
-  currentProduct:null,
+  currentProduct: null,
   status: "idle",
 };
 
@@ -20,6 +21,10 @@ export const getAllProductsAsync = createAsyncThunk(
     return data;
   }
 );
+export const addProductAsync = createAsyncThunk("Products/add", async (product) => {
+  const data = await addProduct(product);
+  return data;
+});
 export const getProductByIdAsync = createAsyncThunk(
   "Products/getById",
   async (productId) => {
@@ -93,7 +98,7 @@ export const authSlice = createSlice({
         state.status = "idle";
         const updatedArray = state.products.map((obj) => {
           if (obj.id === action.payload.id) {
-            return { ...obj,...action.payload };
+            return { ...obj, ...action.payload };
           } else {
             return obj;
           }
@@ -111,6 +116,17 @@ export const authSlice = createSlice({
         state.currentProduct = action.payload;
       })
       .addCase(getProductByIdAsync.rejected, (state, action) => {
+        state.status = "idle";
+      })
+      .addCase(addProductAsync.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(addProductAsync.fulfilled, (state, action) => {
+        state.status = "idle";
+        state.products.push(action.payload);
+        console.log(action.payload)
+      })
+      .addCase(addProductAsync.rejected, (state, action) => {
         state.status = "idle";
       });
   },
