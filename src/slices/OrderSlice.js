@@ -4,10 +4,11 @@ import { getAllOrders, updateOrder } from "../api/Orders_api";
 const initialState = {
   orders: [],
   status: "idle",
+  totalItems:0,
 };
 
-export const getOrdersAsync = createAsyncThunk("Orders/get", async () => {
-  const data = await getAllOrders();
+export const getOrdersAsync = createAsyncThunk("Orders/get", async (page) => {
+  const data = await getAllOrders(page);
   return data;
 });
 export const updateOrderAsync = createAsyncThunk(
@@ -29,7 +30,8 @@ export const ordersSlice = createSlice({
       })
       .addCase(getOrdersAsync.fulfilled, (state, action) => {
         state.status = "idle";
-        state.orders = action.payload;
+        state.orders = action.payload.data;
+        state.totalItems = action.payload.totalItems;
       })
       .addCase(getOrdersAsync.rejected, (state, action) => {
         state.status = "idle";

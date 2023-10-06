@@ -4,10 +4,12 @@ import { getOrdersAsync, updateOrderAsync } from "../slices/OrderSlice";
 
 const Orders = () => {
   const dispatch = useDispatch();
+  const [page, setPage] = useState(1);
   const orders = useSelector((state) => state.orders.orders);
+  const totalItems = useSelector((state) => state.orders.totalItems);
   const [editOrderId, setOrderId] = useState(-1);
   useEffect(() => {
-    dispatch(getOrdersAsync());
+    dispatch(getOrdersAsync(page));
   }, [dispatch]);
   const updateOrder = (order) => {
     setOrderId(-1);
@@ -49,15 +51,15 @@ const Orders = () => {
               </thead>
               <tbody className="text-gray-500">
                 {orders.length > 0 ? (
-                  orders.map((order) => (
-                    <tr>
+                  orders.map((order, idx) => (
+                    <tr key={idx}>
                       <td className="border-b border-gray-200 bg-white px-5 py-5 text-sm">
                         <p className="whitespace-no-wrap">{order.id}</p>
                       </td>
                       <td className="border-b border-gray-200 bg-white px-5 py-5 text-sm">
                         {order.cart.length > 0 ? (
-                          order.cart.map((item) => (
-                            <div className="flex items-center">
+                          order.cart.map((item, ids) => (
+                            <div key={ids} className="flex items-center">
                               <div>
                                 <p className="whitespace-no-wrap">
                                   {item.title} <span>x {item.quantity}</span>
@@ -120,7 +122,7 @@ const Orders = () => {
                           </svg>
                         ) : (
                           <svg
-                          onClick={()=>setOrderId(-1)}
+                            onClick={() => setOrderId(-1)}
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
                             viewBox="0 0 24 24"
@@ -139,7 +141,11 @@ const Orders = () => {
                     </tr>
                   ))
                 ) : (
-                  <p>Empty</p>
+                  <tr>
+                    <td>
+                      <p>Empty</p>
+                    </td>{" "}
+                  </tr>
                 )}
               </tbody>
             </table>
@@ -147,13 +153,31 @@ const Orders = () => {
           <div className="flex flex-col items-center border-t bg-white px-5 py-5 sm:flex-row sm:justify-between">
             <span className="text-xs text-gray-600 sm:text-sm">
               {" "}
-              Showing 1 to 5 of 12 Entries{" "}
+              Showing {(page - 1) * 10 + 1} to{" "}
+              {page * 10 > totalItems ? totalItems : page * 10} of {totalItems}{" "}
+              Entries{" "}
             </span>
             <div className="mt-2 inline-flex sm:mt-0">
-              <button className="mr-2 h-12 w-12 rounded-full border text-sm font-semibold text-gray-600 transition duration-150 hover:bg-gray-100">
+              <button
+                onClick={() => {
+                  if (page > 1) {
+                    setPage(page - 1);
+                    dispatch(getOrdersAsync(page - 1));
+                  }
+                }}
+                className="hover:bg-blue-500 mr-2 h-12 w-16 rounded-md border text-sm font-semibold hover:text-white transition duration-150 "
+              >
                 Prev
               </button>
-              <button className="h-12 w-12 rounded-full border text-sm font-semibold text-gray-600 transition duration-150 hover:bg-gray-100">
+              <button
+                onClick={() => {
+                  if (page !== Math.ceil(totalItems / 10)) {
+                    setPage(page + 1);
+                    dispatch(getOrdersAsync(page + 1));
+                  }
+                }}
+                className="hover:bg-blue-500 h-12 w-16 rounded-md border text-sm font-semibold hover:text-white transition duration-150 "
+              >
                 Next
               </button>
             </div>
