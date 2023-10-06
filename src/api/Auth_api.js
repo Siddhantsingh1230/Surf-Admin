@@ -9,10 +9,8 @@ export const login = async (userInput) => {
   }
   return Promise.reject("Login Failed");
 };
+export const signout = async (userId) => {
+  //logic backend
+  return "SignedOut";
+};
 
-export const getUserId =async (email) =>{
-  const {data} = await axios.get( 
-    `http://localhost:8080/users?email=${email}`
-  )
-  return data;
-}

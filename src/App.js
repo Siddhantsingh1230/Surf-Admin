@@ -8,7 +8,8 @@ import Protected from "./components/Protected";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AddProduct from "./pages/AddProduct";
-import Notification from "./pages/Notification";
+import Orders from "./pages/Orders";
+import Signout from "./pages/Signout";
 
 const App = () => {
   return (
@@ -33,7 +34,17 @@ const App = () => {
               </Protected>
             }
           />
+          <Route
+            exact
+            path="/orders"
+            element={
+              <Protected>
+                <Orders />
+              </Protected>
+            }
+          />
           <Route exact path="/login" element={<Login />} />
+          <Route exact path="/signout" element={<Signout />} />
           <Route exact path="/forgotpassword" element={<ForgotPwd />} />
           <Route
             exact
