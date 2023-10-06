@@ -28,7 +28,7 @@ const AddProduct = () => {
       })}
       className="my-4 max-w-screen-md border px-4 shadow-xl sm:mx-4 sm:rounded-xl sm:px-4 sm:py-4 md:mx-auto"
     >
-      <div className="flex flex-col border-b py-4 sm:flex-row sm:items-start">
+      <div className="flex flex-col py-4 sm:flex-row sm:items-start">
         <div className="shrink-0 mr-auto sm:py-3">
           <p className="font-medium text-2xl">Product Detail</p>
           <p className="text-sm text-gray-600">Add new product into Surf</p>
@@ -46,7 +46,7 @@ const AddProduct = () => {
           Save
         </button>
       </div>
-      <div className="flex flex-col gap-4 border-b py-4 sm:flex-row">
+      <div className="flex flex-col gap-4 py-4 sm:flex-row">
         <p className="shrink-0 w-32 font-medium">Title</p>
         <input
           placeholder="Name"
@@ -59,13 +59,13 @@ const AddProduct = () => {
           })}
           className="w-full rounded-md border bg-white px-2 py-2 outline-none ring-blue-600 focus:ring-1"
         />
+      </div>
         {errors.title && (
           <p className="inline-flex items-center rounded-md  px-2 py-0 text-xs font-medium text-red-700 ">
             {errors.title.message}
           </p>
         )}
-      </div>
-      <div className="flex flex-col gap-4 border-b py-4 sm:flex-row">
+      <div className="flex flex-col gap-4 py-4 sm:flex-row">
         <p className="shrink-0 w-32 font-medium">Description</p>
         <input
           placeholder="Description"
@@ -78,13 +78,13 @@ const AddProduct = () => {
           })}
           className="w-full rounded-md border bg-white px-2 py-2 outline-none ring-blue-600 focus:ring-1"
         />
+      </div>
         {errors.description && (
           <p className="inline-flex items-center rounded-md  px-2 py-0 text-xs font-medium text-red-700 ">
             {errors.description.message}
           </p>
         )}
-      </div>
-      <div className="flex flex-col gap-4 border-b py-4 sm:flex-row">
+      <div className="flex flex-col gap-4 py-4 sm:flex-row">
         <p className="shrink-0 w-32 font-medium">Price</p>
         <input
           type="number"
@@ -92,13 +92,13 @@ const AddProduct = () => {
           {...register("price", { required: "Enter Product Price" })}
           className="w-full rounded-md border bg-white px-2 py-2 outline-none ring-blue-600 focus:ring-1"
         />
+      </div>
         {errors.price && (
           <p className="inline-flex items-center rounded-md  px-2 py-0 text-xs font-medium text-red-700 ">
             {errors.price.message}
           </p>
         )}
-      </div>
-      <div className="flex flex-col gap-4 border-b py-4 sm:flex-row">
+      <div className="flex flex-col gap-4 py-4 sm:flex-row">
         <p className="shrink-0 w-32 font-medium">Discount</p>
         <input
           type="number"
@@ -108,13 +108,13 @@ const AddProduct = () => {
           })}
           className="w-full rounded-md border bg-white px-2 py-2 outline-none ring-blue-600 focus:ring-1"
         />
+      </div>
         {errors.discountPercentage && (
           <p className="inline-flex items-center rounded-md  px-2 py-0 text-xs font-medium text-red-700 ">
             {errors.discountPercentage.message}
           </p>
         )}
-      </div>
-      <div className="flex flex-col gap-4 border-b py-4 sm:flex-row">
+      <div className="flex flex-col gap-4 py-4 sm:flex-row">
         <p className="shrink-0 w-32 font-medium">Stock</p>
         <input
           type="number"
@@ -122,13 +122,13 @@ const AddProduct = () => {
           {...register("stock", { required: "Enter Stock" })}
           className="w-full rounded-md border bg-white px-2 py-2 outline-none ring-blue-600 focus:ring-1"
         />
+      </div>
         {errors.stock && (
           <p className="inline-flex items-center rounded-md  px-2 py-0 text-xs font-medium text-red-700 ">
             {errors.stock.message}
           </p>
         )}
-      </div>
-      <div className="flex flex-col gap-4 border-b py-4 sm:flex-row">
+      <div className="flex flex-col gap-4 py-4 sm:flex-row">
         <p className="shrink-0 w-32 font-medium">Rating</p>
         <input
           type="number"
@@ -136,13 +136,13 @@ const AddProduct = () => {
           {...register("rating", { required: "Enter Rating" })}
           className="w-full rounded-md border bg-white px-2 py-2 outline-none ring-blue-600 focus:ring-1"
         />
+      </div>
         {errors.rating && (
           <p className="inline-flex items-center rounded-md  px-2 py-0 text-xs font-medium text-red-700 ">
             {errors.rating.message}
           </p>
         )}
-      </div>
-      <div className="flex flex-col gap-4 border-b py-4 sm:flex-row">
+      <div className="flex flex-col gap-4 py-4 sm:flex-row">
         <p className="shrink-0 w-32 font-medium">Thumbnail</p>
         <input
           type="text"
@@ -156,13 +156,13 @@ const AddProduct = () => {
           })}
           className="w-full rounded-md border bg-white px-2 py-2 outline-none ring-blue-600 focus:ring-1"
         />
+      </div>
         {errors.thumbnail && (
           <p className="inline-flex items-center rounded-md  px-2 py-0 text-xs font-medium text-red-700 ">
             {errors.thumbnail.message}
           </p>
         )}
-      </div>
-      <div className="flex flex-col gap-4 border-b py-4 sm:flex-row">
+      <div className="flex flex-col gap-4 py-4 sm:flex-row">
         <p className="shrink-0 w-32 font-medium">Image 1</p>
         <input
           type="text"
@@ -176,13 +176,13 @@ const AddProduct = () => {
           })}
           className="w-full rounded-md border bg-white px-2 py-2 outline-none ring-blue-600 focus:ring-1"
         />
+      </div>
         {errors.img1 && (
           <p className="inline-flex items-center rounded-md  px-2 py-0 text-xs font-medium text-red-700 ">
             {errors.img1.message}
           </p>
         )}
-      </div>
-      <div className="flex flex-col gap-4 border-b py-4 sm:flex-row">
+      <div className="flex flex-col gap-4 py-4 sm:flex-row">
         <p className="shrink-0 w-32 font-medium">Image 2</p>
         <input
           type="text"
@@ -196,13 +196,13 @@ const AddProduct = () => {
           })}
           className="w-full rounded-md border bg-white px-2 py-2 outline-none ring-blue-600 focus:ring-1"
         />
+      </div>
         {errors.img2 && (
           <p className="inline-flex items-center rounded-md  px-2 py-0 text-xs font-medium text-red-700 ">
             {errors.img2.message}
           </p>
         )}
-      </div>
-      <div className="flex flex-col gap-4 border-b py-4 sm:flex-row">
+      <div className="flex flex-col gap-4 py-4 sm:flex-row">
         <p className="shrink-0 w-32 font-medium">Image 3</p>
         <input
           type="text"
@@ -216,13 +216,13 @@ const AddProduct = () => {
           })}
           className="w-full rounded-md border bg-white px-2 py-2 outline-none ring-blue-600 focus:ring-1"
         />
+      </div>
         {errors.img3 && (
           <p className="inline-flex items-center rounded-md  px-2 py-0 text-xs font-medium text-red-700 ">
             {errors.img3.message}
           </p>
         )}
-      </div>
-      <div className="flex flex-col gap-4 border-b py-4 sm:flex-row">
+      <div className="flex flex-col gap-4 py-4 sm:flex-row">
         <p className="shrink-0 w-32 font-medium">Image 4</p>
         <input
           type="text"
@@ -236,13 +236,13 @@ const AddProduct = () => {
           })}
           className="w-full rounded-md border bg-white px-2 py-2 outline-none ring-blue-600 focus:ring-1"
         />
+      </div>
         {errors.img4 && (
           <p className="inline-flex items-center rounded-md  px-2 py-0 text-xs font-medium text-red-700 ">
             {errors.img4.message}
           </p>
         )}
-      </div>
-      <div className="flex flex-col gap-4 border-b py-4 sm:flex-row">
+      <div className="flex flex-col gap-4 py-4 sm:flex-row">
         <p className="shrink-0 w-32 font-medium">Image 5</p>
         <input
           type="text"
@@ -256,23 +256,23 @@ const AddProduct = () => {
           })}
           className="w-full rounded-md border bg-white px-2 py-2 outline-none ring-blue-600 focus:ring-1"
         />
+      </div>
         {errors.img5 && (
           <p className="inline-flex items-center rounded-md  px-2 py-0 text-xs font-medium text-red-700 ">
             {errors.img5.message}
           </p>
         )}
-      </div>
-      <div className="flex flex-col gap-4 border-b py-4 sm:flex-row">
+      <div className="flex flex-col gap-4 py-4 sm:flex-row">
         <div>
           <p className="shrink-0 w-32 font-medium">Brand</p>
           <select {...register("brand", { required: "Enter Product Brand" })}>
             <option value="">Brand</option>
             {brands.length > 0
-              ? brands.map((item) => (
+              ? brands.map((item, idx) => (
                   <>
-                    <option value={item.value}>{item.label}</option>
-                    <option value={item.value}>{item.label}</option>
-                    <option value={item.value}>{item.label}</option>
+                    <option key={idx} value={item.value}>
+                      {item.label}
+                    </option>
                   </>
                 ))
               : null}
@@ -290,11 +290,11 @@ const AddProduct = () => {
           >
             <option value="">Category</option>
             {categories.length > 0
-              ? categories.map((item) => (
+              ? categories.map((item, idx) => (
                   <>
-                    <option value={item.value}>{item.label}</option>
-                    <option value={item.value}>{item.label}</option>
-                    <option value={item.value}>{item.label}</option>
+                    <option key={idx} value={item.value}>
+                      {item.label}
+                    </option>
                   </>
                 ))
               : null}
