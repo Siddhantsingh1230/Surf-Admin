@@ -8,6 +8,7 @@ import Protected from "./components/Protected";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AddProduct from "./pages/AddProduct";
+import Notification from "./pages/Notification";
 
 const App = () => {
   return (
@@ -34,6 +35,15 @@ const App = () => {
           />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/forgotpassword" element={<ForgotPwd />} />
+          <Route
+            exact
+            path="/notification"
+            element={
+              <Protected>
+                <Notification />
+              </Protected>
+            }
+          />
           <Route exact path="*" element={<PageNotFound />} />
         </Routes>
         <ToastContainer style={{ fontSize: "0.85rem" }} />
