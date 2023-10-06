@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const getAllOrders = async () => {
-    const {data} = await axios.get("http://localhost:8080/orders?_page=1&_limit=1");
+    const {data} = await axios.get("http://localhost:8080/orders");
     return data;
 };
 

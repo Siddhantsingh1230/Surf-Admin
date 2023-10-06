@@ -10,7 +10,6 @@ import "react-toastify/dist/ReactToastify.css";
 import AddProduct from "./pages/AddProduct";
 import Orders from "./pages/Orders";
 import Signout from "./pages/Signout";
-import Notification from "./pages/Notification";
 
 const App = () => {
   return (
