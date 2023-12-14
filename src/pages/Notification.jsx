@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { getUserId } from "../api/Auth_api";
-import { notifyAll, notifyUser } from "../api/Notification_api";
+import { notifyAllAsync,notifyUserAsync } from "../slices/NotificationSlice";
 import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
 
 const Notification = () => {
+  const dispatch = useDispatch();
+
   const [selectedOption, setSelectedOption] = useState("radioDefault01");
   const handleRadioChange = (event) => {
     setSelectedOption(event.target.id);
@@ -47,7 +50,7 @@ const Notification = () => {
           read: false,
           userId: userId[0].id,
         };
-        const response = await notifyUser(notificationData);
+        dispatch(notifyUserAsync(notificationData));
         setFormData({
           notificationMessage: "",
           email: "",
@@ -60,7 +63,7 @@ const Notification = () => {
     }
     if (selectedOption === "radioDefault01") {
       try {       
-        await notifyAll(formData.notificationMessage.trim());
+        dispatch(notifyAllAsync(formData.notificationMessage.trim()));
         setFormData({
           notificationMessage: "",
           email: "",
